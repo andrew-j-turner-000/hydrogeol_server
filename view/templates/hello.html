@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>hello</p>
+<img src="/plot.png" alt="my plot">
+
+
+<form id="input_parameters"
+	action="{{ url_for('hello') }}" method="POST">
+	<table id="input_parameters_form_table">
+
+		<tr>
+			<th>Sample ID:</th>
+			<td><textarea name="sample_id" id="sample_id" rows="1" cols="16"></textarea></td>
+			<td><em>Integer sample ID number - can be generated if not supplied.</em></td>
+		</tr>
+    </table>
+</form>
+
+</body>
+</html>
