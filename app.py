@@ -9,8 +9,10 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import hydrogeol_utils
 
+
 logger = logging.getLogger(__name__)
 APP_DIR = dirname(dirname(realpath(__file__)))
+LOGFILE = APP_DIR + '/flask.log'
 TEMPLATES_DIR = join(dirname(abspath(__file__)), 'view', 'templates')
 
 STATIC_DIR = join(dirname(abspath(__file__)), 'view', 'static')
@@ -61,4 +63,12 @@ def hello():
         logging.debug('request.form = {}'.format(request.form))
         return render_template('view/templates/result.html', test=hydrogeol_utils.__name__)
 
-app.run()
+
+# run the Flask app
+if __name__ == '__main__':
+    logging.basicConfig(filename=_config.LOGFILE,
+                        level=logging.DEBUG,
+                        datefmt='%Y-%m-%d %H:%M:%S',
+                        format='%(asctime)s %(levelname)s %(filename)s:%(lineno)s %(message)s')
+
+    app.run(debug=_config.DEBUG, threaded=True)
