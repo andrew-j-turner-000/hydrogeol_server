@@ -66,9 +66,9 @@ def hello():
 
 # run the Flask app
 if __name__ == '__main__':
-    logging.basicConfig(filename=_config.LOGFILE,
+    logging.basicConfig(filename=LOGFILE,
                         level=logging.DEBUG,
                         datefmt='%Y-%m-%d %H:%M:%S',
                         format='%(asctime)s %(levelname)s %(filename)s:%(lineno)s %(message)s')
 
-    app.run(debug=_config.DEBUG, threaded=True)
+    app.run(debug=True, threaded=True)
