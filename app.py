@@ -14,14 +14,14 @@ logger = logging.getLogger(__name__)
 APP_DIR = dirname(dirname(realpath(__file__)))
 LOGFILE = APP_DIR + '/flask.log'
 TEMPLATES_DIR = join(dirname(abspath(__file__)), 'view', 'templates')
-
+BASE_URL = "ec2-13-211-162-222.ap-southeast-2.compute.amazonaws.com"
 STATIC_DIR = join(dirname(abspath(__file__)), 'view', 'static')
 
 app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 print(TEMPLATES_DIR)
 @app.route('/')
 def home_page():
-    return render_template('home_page.html')
+    return render_template('home_page.html', BASE_URL=BASE_URL)
 
 
 @app.route('/plot.png')
