@@ -8,6 +8,7 @@ from flask import Response, request
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import hydrogeol_utils
+import subprocess
 
 
 logger = logging.getLogger(__name__)
@@ -47,6 +48,10 @@ def test_conn():
     print(APP_DIR)
     return render_template('hello.html', test=hydrogeol_utils.__name__)
 
+@app.route('/jupyter')
+def trigger_jupyter_notebooks():
+    result = subprocess.run('jupyter notebook', stdout=subprocess.PIPE)
+    print(result.stdout)
 
 #@app.route(':8888')
 #def test_conn():
