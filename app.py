@@ -52,7 +52,8 @@ def test_conn():
 def trigger_jupyter_notebooks():
     result = subprocess.run('jupyter notebook', stdout=subprocess.PIPE)
     print(result.stdout)
-
+    return render_template('hello.html', test=result
+                           )
 #@app.route(':8888')
 #def test_conn():
   # print(TEMPLATES_DIR)
