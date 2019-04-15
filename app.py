@@ -50,7 +50,7 @@ def test_conn():
 
 @app.route('/jupyter')
 def trigger_jupyter_notebooks():
-    subprocess.run('[source, /var/www/hydrogeol_server/venv/bin/activate]')
+    subprocess.run('source /var/www/hydrogeol_server/venv/bin/activate]')
     result = subprocess.run('jupyter notebook', stdout=subprocess.PIPE)
     print(result.stdout)
     return render_template('hello.html', test=result
