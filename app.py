@@ -59,9 +59,7 @@ def test_conn():
 def trigger_jupyter_notebooks():
     result = subprocess.run('./home/ubuntu/run_j.sh', stdout=subprocess.PIPE)
     #result = subprocess.run('jupyter notebook', stdout=subprocess.PIPE)
-    processed_result = []
-    for line in run_command(result.stdout):
-        processed_result.append(line)
+    processed_result = result.stdout
     return render_template('hello.html', test=processed_result
                            )
 #@app.route(':8888')
