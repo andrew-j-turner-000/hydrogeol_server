@@ -42,6 +42,13 @@ def create_figure():
     return fig
 
 
+def run_command(command):
+    p = subprocess.Popen(command,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT)
+    return iter(p.stdout.readline, b'')
+
+
 @app.route('/doathing')
 def test_conn():
     print(TEMPLATES_DIR)
@@ -52,7 +59,9 @@ def test_conn():
 def trigger_jupyter_notebooks():
     result = subprocess.run('./home/ubuntu/run_j.sh', stdout=subprocess.PIPE)
     #result = subprocess.run('jupyter notebook', stdout=subprocess.PIPE)
-    processed_result = result.stdout.decode('utf-8)')
+    processed_result = []
+    for line in run_command(result.stdout):
+        processed_result.append(line)
     return render_template('hello.html', test=processed_result
                            )
 #@app.route(':8888')
